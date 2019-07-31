@@ -14,21 +14,31 @@ choice_3 = []
 list_b = []
 # 获取测试者的用户名
 name = []
+age = []
+gender = []
 
 step = 0
 
 
 # 第一个窗口：获取用户名
-def get_name():
-    name.append(En.get())
+def get_information():
+    name.append(En1.get())
+    age.append(En2.get())
+    gender.append(En3.get())
     root0.destroy()
 
 root0 = Tk()
 # 昵称不要有空格
 label = Label(root0, text='请输入您的昵称:', anchor='c').grid(row=0)
-En = Entry(root0)
-En.grid(row=0, column=1)
-Button(root0, text='确定', anchor='c', width=6, height=1, command=get_name).grid(row=2, column=1)
+En1 = Entry(root0)
+En1.grid(row=0, column=1)
+label = Label(root0, text='请输入您的年龄:', anchor='c').grid(row=1)
+En2 = Entry(root0)
+En2.grid(row=1, column=1)
+label = Label(root0, text='请输入您的性别:', anchor='c').grid(row=2)
+En3 = Entry(root0)
+En3.grid(row=2, column=1)
+Button(root0, text='确定', anchor='c', width=6, height=1, command=get_information).grid(row=3, column=1)
 root0.mainloop()
 
 
@@ -54,17 +64,6 @@ def pic_name(var, pic):
         'warp': pic + '_0.50_warp.png'
     }.get(var, 'error')  # 'error'为默认返回值，可自设置
 '''
-
-
-# # 1-8按钮所对应的指令
-# def data_append_1():
-#     choice_1.append(data_1.get())  # 将用户选择的图像加入choice列表
-
-# def data_append_2():
-#     choice_2.append(data_2.get())  # 将用户选择的图像加入choice列表
-
-# def data_append_3():
-#     choice_3.append(data_3.get())  # 将用户选择的图像加入choice列表
 
 
 # "关闭" 按钮对应的指令
@@ -427,7 +426,7 @@ if not os.path.exists(project_folder + '/results.txt'):
     file.write(str(method_dict) + '\n')
     file.close()
 with open(project_folder + '/results.txt', 'a') as fw:
-    fw.write('用户：' + str(name[0]) + '\n')
+    fw.write('用户：' + str(name[0]) + '    ' + '年龄：' + str(age[0]) + '    ' + '性别：' + str(gender[0]) + '\n')
     fw.write('最优:\t' + '\t'.join([str(i) for i in method_count_1]) + '\n')
     fw.write('次优:\t' + '\t'.join([str(i) for i in method_count_2]) + '\n')
     fw.write('第三:\t' + '\t'.join([str(i) for i in method_count_3]) + '\n')
